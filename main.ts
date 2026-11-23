@@ -18,9 +18,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
+const poster = join(here, 'entry.png');
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
-const src = join(here, 'entry.png');
-if (!existsSync(src)) throw new Error(`missing poster image: ${src}`);
+if (!existsSync(poster)) throw new Error(`missing poster image: ${poster}`);
 mkdirSync(outDir, { recursive: true });
 // A straight byte-for-byte copy, so both grader runs write identical bytes.
-copyFileSync(src, join(outDir, 'entry.png'));
+copyFileSync(poster, join(outDir, 'entry.png'));
